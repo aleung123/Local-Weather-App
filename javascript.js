@@ -4,6 +4,7 @@ $(document).ready(function() {
 	$.getJSON('http://ip-api.com/json', function(data2) {
 		var lat = data2.lat;
 		var long = data2.lon;
+
 		// API url with geolocation
 		var api = 'http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+long+'&appid=d638f9cae2887d5bf1141babe634e6fd';
 		$.getJSON(api, function(data) {
@@ -14,12 +15,9 @@ $(document).ready(function() {
 
 			var fahren = (kelvin*(9/5)-459.67).toFixed(2);
 			var celcius = (kelvin-273).toFixed(2);
+			windSpeed = (2.237*windSpeed).toFixed(1);
 			var tempSwap = true;
 
-			windSpeed = (2.237*windSpeed).toFixed(1);
-
-			$("#city").html(city);
-			$("#weatherType").html(weatherType);
 			$("#fahren").html(fahren + " &#8457;");
 			$("#fahren").click(function() {
 				if (tempSwap === true) {
@@ -30,8 +28,11 @@ $(document).ready(function() {
 					tempSwap = true;
 				}
 			});
+			$("#city").html(city);
+			$("#weatherType").html(weatherType);
 			$("#windSpeed").html(windSpeed + " mph");
 
+			// change background according to temperature
 			if (fahren > 80) {
 				$("body").css('background-image', 'url(https://i.ytimg.com/vi/3EXe5cx5S-0/maxresdefault.jpg)');
 			} else if (fahren > 60) {
