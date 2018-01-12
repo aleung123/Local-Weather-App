@@ -2,6 +2,10 @@ h1 {
 	margin-bottom: 40px;
 }
 
+body {
+  background-size: cover;
+}
+
 .weatherBox {
   background-color: rgba(245, 245, 245, 0.4);
   border-radius: 20px;
